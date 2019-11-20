@@ -12,7 +12,7 @@ receive in the next job interview.
 
 Functional Requirements:
 
-• Allow all users to register to the web site;
+• Allow all users to register to the web site; \n
 • Allow each registered user to log-in to the web site;
 • Allow each registered user to log-out to the web site;
 • Allow all users to see the list of the problems;
