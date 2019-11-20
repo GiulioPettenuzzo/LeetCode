@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Example Bootstrap WA 2017-2018">
+
+    <title>GEMFU</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/style" rel="stylesheet">
+    <link href="bootstrap-4.0.0-dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+    
+
+  </head>
+
+<body>
+
+<div class="container-fluid" id="sub_list">
+
+</div>
+<nav  id="sub_nav" aria-label="Problems navigation">
+          <ul id="pages" class="pagination">
+          
+          </ul>
+</nav>
+<script>
+var page = 0;
+var maxPage = 0;
+var order = 1;
+$(document).ready(function() {
+      makePages();
+
+      //makeSubList(page);
+});
+
+function makeSubList(variable) {
+    var id = getQueryVariable("id");
+    var username=getCookie("username");
+    var url = 'http://localhost:8080/GEMFU-2.0/rest/submission/userProblem/'+ username +'/'+ id+'/'+(variable*5) + '/' + order;
+    httpRequest = new XMLHttpRequest();
+
+    if (!httpRequest) {
+      alert('Giving up :( Cannot create an XMLHTTP instance');
+      return false;
+    }
+    httpRequest.onreadystatechange = alertContentsSub;
+    httpRequest.open('GET', url);
+    httpRequest.send();
+  }
+
+  function alertContentsSub() {
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+      if (httpRequest.status == 200) {
+
+        var div = document.getElementById('sub_list');
+        var table = document.createElement('table');
+        table.className = "table"
+        var thead = document.createElement('thead');
+
+        var tr = document.createElement('tr');
+
+        var th = document.createElement('th');
+        var a = document.createElement('a');
+        a.style.textDecoration = "none";
+        a.style.color = "black";
+        a.href ="#";
+        a.appendChild(document.createTextNode('Id'));
+        a.onclick = function(){
+            document.getElementById("sub_nav").style.display= "none";
+            document.getElementById("sub_div").style.display = "none";
+            document.getElementById("submission_button").style.display = "none";
+        
+            page = 0;
+            document.getElementById('sub_list').innerHTML = "";
+            
+            if(order == 2)
+              order = 6;
+            else
+              order = 2;
+
+            if(maxPage>5)
+              updatePage(page);
+            else
+              updatePage2(page);
+            makeSubList(page);
+          }
+
+        th.appendChild(a);
+        tr.appendChild(th);
+
+        var th = document.createElement('th');
+        var a = document.createElement('a');
+        a.style.textDecoration = "none";
+        a.style.color = "black";
+        a.href ="#";
+        a.appendChild(document.createTextNode('Title'));
+        a.onclick = function(){
+            document.getElementById("sub_nav").style.display= "none";
+            document.getElementById("sub_div").style.display = "none";
+            document.getElementById("submission_button").style.display = "none";
+        
+            document.getElementById('sub_list').innerHTML = "";
+            page = 0;
+             if(order == 3)
+              order = 7;
+            else
+              order = 3;
+            if(maxPage>5)
+              updatePage(page);
+            else
+              updatePage2(page);
+            makeSubList(page);
+          }
+
+        th.appendChild(a);
+        tr.appendChild(th);
+
+        var th = document.createElement('th');
+        var a = document.createElement('a');
+        a.style.textDecoration = "none";
+        a.style.color = "black";
+        a.href ="#";
+        a.appendChild(document.createTextNode('Date'));
+        a.onclick = function(){
+            document.getElementById("sub_nav").style.display= "none";
+            document.getElementById("sub_div").style.display = "none";
+            document.getElementById("submission_button").style.display = "none";
+        
+
+            document.getElementById('sub_list').innerHTML = "";
+            page = 0;
+            if(order == 1)
+              order = 5;
+            else
+              order = 1;
+            if(maxPage>5)
+              updatePage(page);
+            else
+              updatePage2(page);
+            makeSubList(page);
+          }
+
+        th.appendChild(a);
+        tr.appendChild(th);
+
+        var th = document.createElement('th');
+        var a = document.createElement('a');
+        a.style.textDecoration = "none";
+        a.style.color = "black";
+        a.href ="#";
+        a.appendChild(document.createTextNode('Valid'));
+        a.onclick = function(){
+
+            document.getElementById("sub_nav").style.display= "none";
+            document.getElementById("sub_div").style.display = "none";
+            document.getElementById("submission_button").style.display = "none";
+        
+            document.getElementById('sub_list').innerHTML = "";
+            page = 0;
+            if(order == 4)
+              order = 8;
+            else
+              order = 4;
+            if(maxPage>5)
+              updatePage(page);
+            else
+              updatePage2(page);
+            makeSubList(page);
+          }
+
+        th.appendChild(a);
+        tr.appendChild(th);
+
+        thead.appendChild(tr);
+        table.appendChild(thead);
+
+        var tbody = document.createElement('tbody');
+        
+        
+        var jsonData = JSON.parse(httpRequest.responseText);
+        var resource = jsonData['resource-list'];
+
+        for (var i = 0; i < resource.length; i++) {
+          var submission = resource[i].submission;
+
+          var tr = document.createElement('tr');
+
+          var td_badge = document.createElement('td');
+          td_badge.appendChild(document.createTextNode(submission['id']));
+          tr.appendChild(td_badge);
+
+          var td_surname = document.createElement('td');
+
+          var a_title = document.createElement('a');
+          a_title.style.textDecoration = "none";
+          a_title.style.color = "black";
+          a_title.id = submission['id'];
+          a_title.href = "#";
+          a_title.onclick = function(){
+            $("#sol_description").css("display","block");
+            $("#div_pop").css("display","block");
+            showSub(this.id);
+          }
+
+          a_title.appendChild(document.createTextNode(submission['title']));
+          td_surname.appendChild(a_title);
+          tr.appendChild(td_surname);
+
+          var td_date = document.createElement('td');
+          td_date.appendChild(document.createTextNode(submission['date']));
+          tr.appendChild(td_date);
+
+          var td_valid = document.createElement('td');
+          if(submission['valid'] > 0)
+          td_valid.appendChild(document.createTextNode("accepted"));
+          else
+          td_valid.appendChild(document.createTextNode("not accepted"));
+          
+          tr.appendChild(td_valid);
+
+          tbody.appendChild(tr);
+        }
+
+        table.appendChild(tbody);
+
+        div.appendChild(table);
+      
+        document.getElementById("sub_nav").style.display = "block";
+        document.getElementById("sub_div").style.display = "block";
+        document.getElementById("submission_button").style.display = "block";
+
+
+      } else {
+        alert('There was a problem with the request.');
+      }
+    }
+  }
+
+
+  function getQueryVariable(variable)
+  {
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+  }
+
+  function showSub(idSub)
+  {
+    var url = 'http://localhost:8080/GEMFU-2.0/rest/submission/'+ idSub;
+
+    httpRequest = new XMLHttpRequest();
+
+    if (!httpRequest) {
+      alert('Giving up :( Cannot create an XMLHTTP instance');
+      return false;
+    }
+    httpRequest.onreadystatechange = alertContentsSubId;
+    httpRequest.open('GET', url);
+    httpRequest.send();
+  }
+
+  function alertContentsSubId() {
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+      
+      if (httpRequest.status == 200) {
+
+          var jsonData = JSON.parse(httpRequest.responseText);
+          var submission = jsonData['submission'];
+
+          var div = document.getElementById('sol_description').innerHTML = submission['text'];
+
+      } else {
+        alert('There was a problem with the request.');
+      }
+    }
+  }
+
+  function makePages() {
+    var id = getQueryVariable("id");
+    var username=getCookie("username");
+    var url = 'http://localhost:8080/GEMFU-2.0/rest/submission/userProblem/'+username+'/'+ id;
+    httpRequest = new XMLHttpRequest();
+
+    if (!httpRequest) {
+      alert('Giving up :( Cannot create an XMLHTTP instance');
+      return false;
+    }
+    httpRequest.onreadystatechange = makePage;
+    httpRequest.open('GET', url);
+    httpRequest.send();
+  }  
+
+  function makePage()
+  {
+
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+      
+      if (httpRequest.status == 200) {
+
+      var id = getQueryVariable("id");
+    
+    var ul = document.getElementById('pages');
+    
+    var li = document.createElement('li');
+      li.className = "page-item";
+      li.style.visibility = "hidden";
+      var a = document.createElement('a');
+      a.className = "page-link";
+      a.appendChild(document.createTextNode("Previous"));
+      
+
+      a.onclick = function(){
+            if(page!=0)
+            {
+              page--;
+            }
+            document.getElementById('sub_list').innerHTML = "";
+            document.getElementById("sub_nav").style.display= "none";
+            document.getElementById("sub_div").style.display = "none";
+            document.getElementById("submission_button").style.display = "none";
+        
+
+            makeSubList(page);
+            if(maxPage>5)
+              updatePage(page);
+            else
+              updatePage2(page);
+
+          }
+
+      li.appendChild(a);
+      ul.appendChild(li);
+
+      var jsonData = JSON.parse(httpRequest.responseText);
+      var resource = jsonData['resource-list'];
+      var s = 0;
+      for (var i = 0; i < resource.length; i++) {
+       if(i%5==0)
+       { 
+        if(s<5)
+        {
+        var li = document.createElement('li');
+        li.className = "page-item";
+        if(s==0)
+        {
+          li.className = "page-item active";  
+        }
+        var a = document.createElement('a');
+        a.className = "page-link";
+        a.appendChild(document.createTextNode(s+1));
+        
+        a.onclick = function(){
+              page = parseInt(this.text) - 1;
+
+              document.getElementById('sub_list').innerHTML = "";
+
+              document.getElementById("sub_nav").style.display = "none";
+              document.getElementById("sub_div").style.display = "none";
+              document.getElementById("submission_button").style.display = "none";
+        
+              makeSubList(page);
+              if(maxPage>5)
+              {
+                updatePage(page);
+              }
+              else
+                updatePage2(page);
+            
+
+            }
+        li.appendChild(a);
+        ul.appendChild(li);
+        s++;
+        }
+        maxPage++;
+      }
+
+
+    }
+      if(s<2)
+        document.getElementById("pages").style.visibility= "hidden";
+
+      var li = document.createElement('li');
+      li.className = "page-item";
+      
+      var a = document.createElement('a');
+      a.className = "page-link";
+      a.appendChild(document.createTextNode("Next"));
+      a.onclick = function(){
+
+      document.getElementById("sub_nav").style.display= "none";
+      document.getElementById("sub_div").style.display = "none";
+      document.getElementById("submission_button").style.display = "none";
+        
+      
+      if(page < maxPage - 1)
+      {
+        page++;
+        if(maxPage>5)
+          updatePage(page);
+        else
+          updatePage2(page);
+      }
+        document.getElementById('sub_list').innerHTML = "";
+        makeSubList(page);
+
+        }
+
+      li.appendChild(a);
+      ul.appendChild(li);
+
+      makeSubList(page);
+      } else {
+        alert('There was a problem with the request.');
+      }
+    }
+  }
+
+  function updatePage(variable)
+  {
+    var j = variable;
+    var z = maxPage;
+    if(j<2)
+    {
+      j=2;
+    }
+    if(j>z-3)
+    {
+      j=z-3;
+    }
+    var t = 2;
+    var l;
+
+    if(page == 0)
+    {
+      l=2;
+    }
+    else if (page == 1)
+    {
+      l=3;
+    }
+    else if (page == maxPage -1)
+    { 
+      l=6;
+    }
+    else if (page == maxPage -2)
+    {
+      l=5;
+    }
+    else
+    {
+      l=4;
+    }
+
+    if(page==0)
+    {    
+     document.getElementById("pages").childNodes[1].style.visibility= "hidden";
+    }
+    else
+    {
+     document.getElementById("pages").childNodes[1].style.visibility= "visible"; 
+    }
+
+    if(page == maxPage -1)
+    {
+      document.getElementById("pages").childNodes[7].style.visibility= "hidden"; 
+    }
+    else
+    {
+     document.getElementById("pages").childNodes[7].style.visibility= "visible";  
+    }
+
+    for(var i=j;i<j+5;i++)
+    {
+    document.getElementById("pages").childNodes[t].childNodes[0].text = i-1;
+    if(t==l)
+    {
+      document.getElementById("pages").childNodes[t].className = "page-item active";
+    }
+    else
+    {
+       document.getElementById("pages").childNodes[t].className = "page-item";
+    }
+
+    t++;
+    }
+  }
+
+  function updatePage2(variable)
+  {
+    var j = variable +2;
+    var z = maxPage + 2;
+    var t = 2;
+
+    if(page==0)
+    {    
+     document.getElementById("pages").childNodes[1].style.visibility= "hidden";
+    }
+    else
+    {
+     document.getElementById("pages").childNodes[1].style.visibility= "visible"; 
+    }
+
+    if(page == maxPage -1)
+    {
+      document.getElementById("pages").childNodes[maxPage + 2].style.visibility= "hidden"; 
+    }
+    else
+    {
+     document.getElementById("pages").childNodes[maxPage + 2].style.visibility= "visible";  
+    }
+
+
+    for(var i=2;i<z;i++)
+    {
+    document.getElementById("pages").childNodes[t].childNodes[0].text = i-1;
+    if(t == j)
+    {
+      document.getElementById("pages").childNodes[t].className = "page-item active";
+    }
+    else
+    {
+       document.getElementById("pages").childNodes[t].className = "page-item";
+    }
+
+    t++;
+    }
+  }
+
+</script>
+
+</body>
+
+</html>

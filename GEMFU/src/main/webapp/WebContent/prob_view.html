@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Example Bootstrap WA 2017-2018">
+
+    <title>GEMFU</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="bootstrap-4.0.0-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/botticss.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/scriptFileMichele.js"></script>
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+
+  </head>
+
+  <body>
+
+  <div id="nav-bar-gemfu">
+
+  </div>
+  <script type="text/javascript">$(document).ready(function() {loadBar(); });</script>
+<div class="container-fluid">
+
+    <div class="row">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-8">
+    <h1 class="container-fluid" id = "title"></h1>
+
+    <ul class="nav nav-tabs flex-column flex-md-row" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="far fa-file-alt"></i> Description</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"> <i class="far fa-lightbulb" aria-hidden="true"></i> Hint</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="submission-tab" data-toggle="tab" href="#submission" role="tab" aria-controls="submission" aria-selected="false"><i class="fas fa-code"></i> Submissions</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="discussion-tab" data-toggle="tab" href="#discussion" role="tab" aria-controls="prova" aria-selected="false"><i class="fas fa-comments"></i>Discuss</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="solution-tab" data-toggle="tab" href="#solution" role="tab" aria-controls="solution" aria-selected="false"> <i class="fa fa-book"></i>Solution</a>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"> 
+         
+        </div>
+
+
+        <div class="tab-pane fade" id="submission" role="tabpanel" aria-labelledby="submission-tab">
+      
+
+        </div>
+  
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"> 
+
+          
+        </div>
+
+        <div class="tab-pane fade" id="discussion" role="tabpanel" aria-labelledby="discussion-tab">
+
+
+        </div>
+
+        <div class="tab-pane fade" id="solution" role="tabpanel" aria-labelledby="solution-tab"> 
+
+
+        </div>
+    </div>
+    <!-- FINE DIV TABLIST -->
+</div>
+</div>
+
+  <div class="row">
+  <div class="col-md-1">
+
+  </div>
+  <div class="col-md-8">
+
+  <div id="sub_div" class="cp-content" style="display:block">
+    <h4>Submission:</h4><br>
+    <h5> Title:</h5> <input type="text" id = "title_sub" class="ins-title form-control" name="title_sub" placeholder="Title of your submission..."><br>
+
+     <h5> Text:</h5> <p><textarea id="text_sub" class="form-control" name="description" placeholder="Write your submission..."></textarea></p>
+     <script>
+       CKEDITOR.replace("text_sub", { height: "25vh"});
+     </script>
+    <button id="submission_button" type="button" class="btn btn-dark sol-btn"><b>Submit</b></button>
+  </div>
+
+  <footer style="margin-top: 5vh; margin-bottom: 3vh;">
+    <hr>
+    <div class="row">
+      <div class="col-sm-4 copyright">
+        <span>Copyright © 2018: GEMFU</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</div>
+</div>
+
+  <script type="text/javascript" src="js/bottiJS.js"></script>
+  <script type="text/javascript"> makeTitle() </script>
+
+  <script type="text/javascript" src="js/giulioScript.js"></script>
+
+
+  <div class="no_scroll" id="sol_description">
+
+  </div>
+
+
+<div id="div_pop">
+</div>
+
+</body>
+
+<script src="js/scriptFileMichele-end.js"></script>
+</html>

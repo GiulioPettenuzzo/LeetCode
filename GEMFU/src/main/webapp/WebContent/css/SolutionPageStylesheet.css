@@ -1,0 +1,74 @@
+div.comment a{
+    color: mediumblue;
+}
+div.comment a:hover{
+    color: purple;
+}
+
+.comment{
+    margin-top:2vh;
+    margin-bottom:5vh;
+}
+.text-comment {
+    background-color: lightskyblue;
+    padding:1vh 2vh;
+    border-radius: 15px;
+    margin-top:0.1vh;
+}
+.CK-textarea > p::after {
+    margin-right: 100vw;
+}
+.com-user-label{
+    margin-bottom: 0.1vh;
+    margin-right:2vw;
+    color:dodgerblue;
+}
+.com-info-label {
+    margin-bottom: 0.1vh;
+    color: darkgrey;
+    font-size:13px;
+}
+
+.com-img{
+    width: 3.60vw;
+    height: 3.60vw;
+    border-radius: 1.8vw;
+    background-color: dimgray;
+}
+#n-comments{
+    position:relative;
+    top:6px;
+    width:25px;
+    height:25px;
+    border-radius:50%;
+    background-color:dimgray;
+    color:white;
+    text-align:center;
+    vertical-align:middle;
+    margin-bottom:0px;
+    margin-left:10px;
+}
+
+#n-comments2{
+    position:relative;
+    top:6px;
+    width:25px;
+    height:25px;
+    border-radius:50%;
+    background-color:dimgray;
+    color:white;
+    text-align:center;
+    vertical-align:middle;
+    margin-bottom:0px;
+    margin-left:10px;
+}
+
+#comments-label{
+    margin-bottom:5vh;
+}
+#ins-comment{
+    height:5vh;
+}
+#Post{
+    font-size:13px;
+}

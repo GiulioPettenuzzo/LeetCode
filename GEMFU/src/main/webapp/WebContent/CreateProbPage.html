@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<link href="bootstrap-4.0.0-dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+<link href="css/CreateProbStylesheet.css" rel="stylesheet">
+<script src="js/CreateProbScript.js"></script>
+<script src="js/d3.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+<script src="js/scriptFileMichele.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, height=device-height, initial-scale=1">
+
+<title>GEMFU</title>
+</head>
+
+<body>
+	<div id="nav-bar-gemfu">
+          
+    </div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div id="create-prob" class="col-md-6 justify-content-center">
+			<h1 class="myh1">CREATE YOUR PROBLEM!</h1>
+		</div>
+	</div>
+
+	<div class="row cp-content">
+		<div class="col-md-2">
+		<h4 class="myh4">TITLE:</h4>
+		</div>
+		<div class="col-md-10">
+			<p><input type="text" class="ins-title form-control" name="title" maxlength="50" placeholder="Insert the title of your problem..." required/></p>
+		</div>
+	</div>
+	
+    <div class="row cp-content">
+		<div class="col-md-2">
+		<h4 class="myh4">DIFFICULTY:</h4>
+		</div>
+        <div class="col-md-10">
+                <form id="difficulty">
+                    <label class="radio-inline"><input type="radio" name="difopt" value="Easy" checked="checked">Easy</label>
+                    <label class="radio-inline"><input type="radio" name="difopt" value="Medium">Medium</label>
+                    <label class="radio-inline"><input type="radio" name="difopt" value="Hard">Hard</label>
+                </form>
+        </div>
+	</div>
+
+	<div class="row cp-content">
+		<div class="col-md-2">
+		<h4 class="myh4">DESCRIPTION:</h4>
+		</div>
+		<div class="col-md-10">
+			<p>
+                <textarea id="ins-desc" class="form-control" name="description" placeholder="Describe your problem..."></textarea>
+                <script>
+                    CKEDITOR.replace("ins-desc");
+                </script>
+            </p>
+		</div>
+	</div>
+	
+	<div class="row cp-content">
+		<div id="sol-btns" class="col-md-12">
+        <label id="sol-label">If you have a solution for this problem upload it!</label>
+		<button type="button" id="add-sol-btn" class="btn btn-dark sol-btn" onclick="showSolutionWindow()">
+			<i class="fa fa-plus">Add a solution</i>
+		</button>
+		</div>
+	</div>
+	
+	<div class="row cp-content">
+		<div class="col-md-6">
+			To which categories belongs your problem?
+		</div>
+	</div>
+	<div class="row">
+		<div id="categories">
+			<script>loadCategories()</script>
+		</div>
+	</div>
+
+	<div id="ask-comp-div" class="row cp-content final">
+		<div class="col-md-6">
+			Have you ever seen this problem in a real interview before?
+			<button id="yes-btn" type="button" class="btn" onclick="highlightYes()">
+				Yes
+			</button>
+			<button id="no-btn" type="button" class="btn" onclick="highlightNo()">
+				No
+			</button>
+		</div>
+	</div>
+	
+	<div id="company-div" class="row cp-content final">
+		<form class="form-inline col-md-12">
+			<p>In which company?
+            <input type="text" list="comps" class="form-control comps" name="companies" placeholder="Select a company..." onclick="deleteOnClick()"/>
+			<datalist id="comps">
+                <script>loadCompanies()</script>	
+			</datalist>
+            
+			or
+			<input type="text" id="companies2" class="form-control" maxlength="20" placeholder="Add a new one..." onclick="deleteOnClick()"/>
+			<button id="comp-btn" type="button" class="btn btn-dark">Add Company</button>
+		</p>
+		</form>
+	</div>
+
+    <!--<div id="prova"></div>-->
+    <div id="obscure" onclick="closeSolutionWindow()"></div>
+	<div id="solution-div" >
+		<nav class="navbar navbar-expand navbar-dark bg-dark" style="position:sticky;top:0;left:0;right:0;z-index:2">
+			<h1 id="sol">CREATE A SOLUTION</h1>
+		</nav>
+        
+            <div class="row">
+                <div class="col-md-2 sol-col">
+                    <h5 class="myh5">TITLE:</h5>
+                </div>
+                <div class="col-md-6 sol-col">
+                    <p><input type="text" class="ins-title form-control" name="sol-title" maxlength="50" placeholder="Insert the title of your solution..." /></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2 sol-col">
+                    <h5 class="myh5">DESCRIPTION:</h5>
+                </div>
+                <div class="col-md-8 sol-col">
+                    <p>
+                        <textarea id="ins-sol-desc" class="form-control" name="sol-desc" placeholder="Describe your solution..."></textarea>
+                        <script>
+                            CKEDITOR.replace("ins-sol-desc", { height: "25vh"});
+                        </script>
+                    </p>
+                </div>
+            </div>
+		<nav id="bottom-sol" class="navbar navbar-expand navbar-dark bg-dark justify-content-end">
+				<button type="button" class="btn btn-light sol-btn" onclick="closeSolutionWindow()"><b>Cancel</b></button>
+				<button type="button" id="sub-sol-btn" class="btn btn-light sol-btn" onclick="saveSolution()"><b>Submit</b></button>
+		</nav>
+		
+	</div>
+    <nav id="bottom" class="navbar navbar-expand navbar-dark bg-dark justify-content-end">
+        <button type="button" class="btn btn-light sol-btn" onclick="closeCreation()"><b>Cancel</b></button>
+        <script>function closeCreation(){window.location.href = "index.html"}</script>
+        <button id="submit-prob" type="button" class="btn btn-light sol-btn"><b>Submit</b></button>
+    </nav>
+</div>
+
+
+
+<script type="text/javascript">$(document).ready(function() {loadBar(); });</script>
+<script src="js/CreateProbScript.js"></script>
+
+</body>
+</html>

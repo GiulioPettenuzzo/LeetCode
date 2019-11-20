@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Example Bootstrap WA 2017-2018">
+
+    <title>GEMFU</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/discussion.css" rel="stylesheet">
+
+    <link href="bootstrap-4.0.0-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+
+</head>
+
+<body>
+<br>
+
+<div id="discussion_list">
+    <div  class="cp-content row">
+        <input class = "form-control ins-title col-sm-5 space" type="search" id="mySearch" name="q" placeholder="Search topics for comments" tabindex="-1">
+        <button type="button" class="btn-sm button-post" id="btn-new-thread" onclick="newThreadDialog()" style="display: none">
+            <i class="fas fa-plus-circle"></i> New
+        </button>
+    </div>
+    <br>
+    <div id= "single_discussion_list" class="class_item_single_discussion_list" >
+        <div id= "single_discussion">
+            <p style="float: left;"><img src="http://www.clker.com/cliparts/B/R/Y/m/P/e/blank-profile-hi.png" id="profile_image_list_discussion" class= "profile-picture-image" alt="Profile Image"></p>
+            <div id="discussion-box">
+                <b><a href="javascript:void(0)" id="open-discussion" class="list_discussion_title"></a> </b><br>
+                <span id="list_discussion_date" class="list_discussion_date">Created </span>
+            </div>
+            <div class="discussion-votes">
+                <div class="discussion-box-votes" style="border-right:1px solid; border-color: #d9d9d9; padding-right: 15px;">
+                    <font color="#7c7a79">VOTES </font><br>
+                    <b><span id="numberOfVotes" class="numberOfVotes" style="color:#2965a8"></span></b>
+                </div>
+                <div class="discussion-box-votes" style="padding-left: 15px;">
+                    <font color="#7c7a79">VIEWS </font><br>
+                    <b><span id="numberOfVisualization" class="numberOfVisualization" ></span></b>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="create-discussion" class = "discussion-dialog">
+</div>
+
+<script src="js/discussionScriptFile.js"></script>
+
+<script>
+$(document).ready(function() {
+  addBtn();
+  loadDiscussionList();
+});
+function addBtn()
+{
+  var username=getCookie("username");
+  var userSession = sessionStorage.getItem("username");
+  if(username!="" && username!=null && userSession != null)
+  {
+    document.getElementById('btn-new-thread').style.display = "block";
+  }
+}
+</script>
+
+
+</body>
+</html>

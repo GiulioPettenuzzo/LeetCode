@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GEMFU WebPage</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap-4.0.0-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/Umberto.css" rel="stylesheet">
+
+    <!-- Font Awesome CSS-->
+<!-- <link href="fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css" rel="stylesheet"> -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <script src="bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+    <!--
+    <script src="boh.js"> </script>
+  -->
+  </head>
+
+  <body>
+
+  
+  		
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a id="special_title" class="nav-link" href="#">GEMFU</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active">Problems</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Categories</a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="#">Discussions</a>
+            </li>
+
+        </ul>
+    
+    
+    	
+			<ul class="navbar-nav ml-auto">
+    		<li class="nav-item" class="dropdown">    	
+    		<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"> <i class="far fa-user"> </i> </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <form class="px-4 py-3" class="rightElement">
+                <div class="form-group">
+                  <label for="exampleDropdownFormEmail1">Email address</label>
+                  <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+                </div>
+                <div class="form-group">
+                  <label for="exampleDropdownFormPassword1">Password</label>
+                  <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                  <label class="form-check-label" for="dropdownCheck">
+                    Remember me
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+              </form>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">New around here? Sign up</a>
+              <a class="dropdown-item" href="#">Forgot password?</a>
+            </div>
+          </li>
+      
+      </ul>
+</div>
+</nav>
+
+
+
+
+
+
+
+
+  	<br />
+  	
+  	<br />
+  	<br />
+
+  	
+<!--
+<script>
+
+$(document).ready(function() {
+  insertProb();
+})
+
+
+
+function insertProb() {
+  
+    var url = 'http://localhost:8080/GEMFU-2.0/rest/problem/';
+
+    httpRequest = new XMLHttpRequest();
+
+    if (!httpRequest) {
+      alert('Giving up :( Cannot create an XMLHTTP instance');
+      return false;
+    }
+    httpRequest.onreadystatechange = alertContents;
+    httpRequest.open('GET', url);
+    httpRequest.send();
+  
+
+  function alertContents() {
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+      
+      if (httpRequest.status == 200) {
+          var div = document.getElementById('newtable');
+          var table = document.createElement('table');
+          table.className = "table";
+          var thead = document.createElement('thead');
+          var tr = document.createElement('tr');
+          
+          var th = document.createElement('th');
+          th.appendChild(document.createTextNode('#'));
+          tr.appendChild(th);
+          
+          var th = document.createElement('th');
+          th.appendChild(document.createTextNode('Title'));
+          tr.appendChild(th);
+
+          
+          var th = document.createElement('th');
+          th.appendChild(document.createTextNode('Difficulty'));
+          tr.appendChild(th);
+
+          thead.appendChild(tr);
+          table.appendChild(thead);
+
+          var tbody = document.createElement('tbody');
+
+          var jsonData = JSON.parse(httpRequest.responseText);
+          var resource = jsonData['resource-list'];
+
+          for (var i = 0; i < resource.length; i++) {
+            var problem = resource[i].problem;
+            var tr = document.createElement('tr');
+
+            var td_id = document.createElement('td');
+            td_id.appendChild(document.createTextNode(problem['id']));
+            tr.appendChild(td_id);
+
+            var td_title = document.createElement('td');
+            td_title.appendChild(document.createTextNode(problem['title']));
+            tr.appendChild(td_title);
+
+            var td_dif = document.createElement('td');
+            td_dif.appendChild(document.createTextNode(problem['difficulty']));
+            tr.appendChild(td_dif);
+
+            tbody.appendChild(tr);
+          }
+
+          table.appendChild(tbody);
+          div.appendChild(table);
+        }
+
+        else {
+        alert('There was a problem with the request.');
+      }
+    }
+  }
+};
+
+
+
+
+</script>
+
+-->
+
+
+<!--
+    <div class="container" id ="container"> 
+  		
+  		<div id="newtable">
+
+
+
+      
+  		<input type="text" id="myInput" onkeyup="searchProblem()" class="fa" placeholder="&#xf002 Search for a desired problem...">
+	
+
+  		<div class=table-responsive">
+      <table id="myTable" class="table">
+  			<thead class="bg-dark">
+  				<tr>
+  					<th onclick="sortTable()" class="copy" class="test" data-toggle="tooltip" data-placement="top" title="Click here if you want to order the problems by id">#</th>
+  					<th scope="col" class="white_button">Problem</th>
+  					<th scope="col" class="white_button">Category</th>
+  					<th onclick="sortTableDif()" class="copy" class="test" data-toggle="tooltip" data-placement="top" title="Click here if you want to order the problems by their difficulty">Difficulty</th>
+  					<th scope="col" class="white_button">Solution</th>
+  				</tr>
+  			</thead>
+  			<tbody>
+  				<tr>
+  					<td>8</td>
+  					<td>Baa</td>
+  					<td>Category5</td>
+  					<td>Hard</td>
+  					<td>ok</td>
+  				</tr>
+  				<tr>
+  					<td>4</td>
+  					<td>Problem2</td>
+  					<td>Category3</td>
+  					<td>Medium</td>
+  					<td>NO</td>
+  				</tr>
+          <tr>
+            <td>33</td>
+            <td>Problem1</td>
+            <td>Category9</td>
+            <td>Easy</td>
+            <td>NO</td>
+          </tr>
+			</tbody>
+		</table>
+  </div>
+
+
+		<br />
+		<br />
+	-->
+
+
+	
+<div class="container-fluid" id="sub_list">
+  
+  
+
+<script>
+var page = 0;
+var maxPage = 0;
+var order = 1;
+$(document).ready(function() {
+  makePages();
+});
+
+function makeSubList(variable) {
+  var url = 'http://localhost:8080/GEMFU-2.0/rest/problem/varorder/'+(variable*5) + '/' + order;
+  httpRequest = new XMLHttpRequest();
+
+  if (!httpRequest) {
+    alert('Giving up :( Cannot create an XMLHTTP instance');
+    return false;
+  }
+  httpRequest.onreadystatechange = alertContentsSub;
+  httpRequest.open('GET', url);
+  httpRequest.send();
+}
+
+
+function alertContentsSub() {
+  if (httpRequest.readyState === XMLHttpRequest.DONE) {
+    if (httpRequest.status == 200) {
+
+      
+      var div = document.getElementById('sub_list');
+      var table = document.createElement('table');
+      table.className = "table";
+      table.id = "mytable";
+      var thead = document.createElement('thead');
+
+      var tr = document.createElement('tr');
+
+      var th = document.createElement('th');
+      var a = document.createElement('a');
+      a.title = "Click here to order the problems by increasing/decreasing id!";
+      a.style.textDecoration = "none";
+      a.style.color = "white";
+      a.href = "#";
+      a.appendChild(document.createTextNode('Id'));
+      a.onclick = function(){
+        document.getElementById("sub_nav").style.display= "none";
+
+        page = 0;
+        document.getElementById('sub_list').innerHTML = "";
+
+        if(order == 2)
+          order = 6;
+        else
+          order = 2;
+
+        if(maxPage>5)
+          updatePage(page);
+        else
+          updatePage2(page);
+          makeSubList(page);
+        }
+
+        th.appendChild(a);
+        tr.appendChild(th);
+
+        var th = document.createElement('th');
+        var a = document.createElement('a');
+        a.title = "Click here to order the problems by increasing/decreasing title!";
+        a.style.textDecoration = "none";
+        a.style.color = "white";
+        a.href = "#";
+        a.appendChild(document.createTextNode('Title'));
+        a.onclick = function() {
+          document.getElementById("sub_nav").style.display= "none";
+
+          document.getElementById('sub_list').innerHTML = "";
+          page = 0;
+          if(order == 3)
+            order = 7;
+          else
+            order = 3;
+          if(maxPage>5)
+            updatePage(page);
+          else
+            updatePage2(page);
+            makeSubList(page);
+          }
+
+          th.appendChild(a);
+          tr.appendChild(th);
+
+          var th = document.createElement('th');
+          var a = document.createElement('a');
+          a.title = "Click here to order the problems by their difficulty!";
+          a.style.textDecoration = "none";
+          a.style.color = "white";
+          a.href = "#";
+          a.appendChild(document.createTextNode('Difficulty'));
+          a.onclick = function(){
+            document.getElementById("sub_nav").style.display= "none";
+
+            document.getElementById('sub_list').innerHTML = "";
+            page = 0;
+            if(order == 4)
+              order = 8;
+            else
+              order = 4;
+            if(maxPage>5)
+              updatePage(page);
+            else
+              updatePage2(page);
+            makeSubList(page);
+          }
+
+          th.appendChild(a);
+          tr.appendChild(th);
+
+          var th = document.createElement('th');
+          var a = document.createElement('a');
+          a.title = "Click here to order the problems by creation's date!";
+          a.style.textDecoration = "none";
+          a.style.color = "white";
+          a.href = "#";
+          a.appendChild(document.createTextNode('Date'));
+          a.onclick = function() {
+
+            document.getElementById("sub_nav").style.display= "none";
+
+            document.getElementById('sub_list').innerHTML = "";
+            page = 0;
+            if(order == 1)
+              order = 5;
+            else
+              order = 1;
+            if(maxPage>5)
+              updatePage(page);
+            else
+              updatePage2(page);
+            makeSubList(page);
+          }
+
+          th.appendChild(a);
+          tr.appendChild(th);
+
+          var th = document.createElement('th');
+          var a = document.createElement('a');
+          a.style.textDecoration = "none";
+          a.style.color = "white";
+          a.href = "#";
+          a.appendChild(document.createTextNode('Solution'));
+          a.onclick = function(){
+            document.getElementById("sub_nav").style.display= "none";
+
+            document.getElementById('sub_list').innerHTML = "";
+            page = 0;
+            if(order == 10 )
+              order = 9;
+            else
+              order = 10;
+            if(maxPage>5)
+              updatePage(page);
+            else
+              updatePage2(page);
+            makeSubList(page);
+          }
+
+          th.appendChild(a);
+          tr.appendChild(th);
+
+
+          thead.appendChild(tr);
+          table.appendChild(thead);
+
+          var tbody = document.createElement('tbody');
+
+          var jsonData = JSON.parse(httpRequest.responseText);
+          var resource = jsonData['resource-list'];
+
+          for (var i = 0; i < resource.length; i++) {
+            var problem = resource[i].problem;
+
+            var tr = document.createElement('tr');
+            
+            var refff = document.createElement('a');
+            refff.style.textDecoration = "none";
+            refff.style.color = "black";
+            refff.href = "prob_view.html?id=" + problem['id'];
+            refff.appendChild(document.createTextNode(problem['id']));
+            
+            var td_id = document.createElement('td');
+            td_id.appendChild(refff);
+            tr.appendChild(td_id);
+
+
+            var td_title = document.createElement('td');
+            td_title.appendChild(document.createTextNode(problem['title']));
+            tr.appendChild(td_title);
+
+            var td_dif = document.createElement('td');
+            td_dif.appendChild(document.createTextNode(problem['difficulty']));
+            tr.appendChild(td_dif);
+
+            var td_date = document.createElement('td');
+            td_date.appendChild(document.createTextNode(problem['date']));
+            tr.appendChild(td_date);
+
+            var td_date = document.createElement('td');
+            if(problem['solution'] == null || problem['solution'] == 'NULL' || problem['solution'] == '')
+            {
+              var ico = document.createElement('i'); 
+              ico.className="far fa-file-alt";
+              //td_date.appendChild(document.createTextNode(problem['solution']));
+            }
+            else
+            {
+              var ico = document.createElement('i'); 
+              ico.className="far fa-file-alt";
+              td_date.appendChild(ico);
+              
+            }
+            tr.appendChild(td_date);
+
+            tbody.appendChild(tr);
+          }
+
+          table.appendChild(tbody);
+          div.appendChild(table);
+
+          document.getElementById("sub_nav").style.display= "block";
+          
+          
+
+
+
+      } else {
+        alert('There was a problem with the request.');
+      }
+}
+}
+
+
+
+function makePages() {
+  var url = 'http://localhost:8080/GEMFU-2.0/rest/problem';
+  httpRequest = new XMLHttpRequest();
+
+  if (!httpRequest) {
+    alert('Giving up:( Cannot create an XMLHTTP instance');
+    return false;
+  }
+  httpRequest.onreadystatechange = makePage;
+  httpRequest.open('GET',url);
+  httpRequest.send();
+}
+
+function makePage()
+{
+
+  if (httpRequest.readyState === XMLHttpRequest.DONE) {
+
+    if (httpRequest.status == 200) {
+
+      var ul = document.getElementById('pages');
+      var li = document.createElement('li');
+      li.className = "page-item";
+      li.style.visibility = "hidden";
+      var a = document.createElement('a');
+      a.className = "page-link";
+      a.appendChild(document.createTextNode("Previous"));
+
+      a.onclick = function() {
+        if (page!=0)
+        {
+          page--;
+        }
+        document.getElementById('sub_list').innerHTML = "";
+        document.getElementById("sub_nav").style.display = "none";
+
+        makeSubList(page);
+        if(maxPage>5)
+          updatePage(page);
+        else
+          updatePage2(page);
+      }
+
+      li.appendChild(a);
+      ul.appendChild(li);
+
+      var jsonData = JSON.parse(httpRequest.responseText);
+      var resource = jsonData['resource-list'];
+      var s = 0;
+      for (var i = 0; i < resource.length; i++) {
+        if(i%5==0)
+        {
+          if(s<5)
+          {
+            var li = document.createElement('li');
+            li.className = "page-item";
+            if(s==0)
+            {
+              li.className = "page-item active";
+            }
+            var a = document.createElement('a');
+            a.className = "page-link";
+            a.appendChild(document.createTextNode(s+1));
+
+            a.onclick = function() {
+              page = parseInt(this.text) - 1;
+
+              document.getElementById('sub_list').innerHTML = "";
+
+              document.getElementById("sub_nav").style.display = "none";
+
+              makeSubList(page);
+              if(maxPage>5)
+              {
+                updatePage(page);
+              }
+              else
+                updatePage2(page);
+            }
+            li.appendChild(a);
+            ul.appendChild(li);
+            s++;
+            }
+            maxPage++;
+          }
+      }
+      if (s<2)
+        document.getElementById("pages").style.visibility = "hidden";
+
+      var li = document.createElement('li');
+      li.className = "page-item";
+
+      var a = document.createElement('a');
+      a.className = "page-link";
+      a.appendChild(document.createTextNode("Next"));
+      a.onclick = function(){
+
+        document.getElementById("sub_nav").style.display="none";
+
+      if(page < maxPage -1)
+      {
+        page++;
+        if(maxPage>5)
+          updatePage(page);
+        else
+          updatePage2(page);
+      }
+      document.getElementById('sub_list').innerHTML = "";
+      makeSubList(page);
+      }
+
+      li.appendChild(a);
+      ul.appendChild(li);
+
+      makeSubList(page);
+      }  else {
+            alert('There was a problem with the request.');
+      }
+  }
+}
+
+function updatePage(variable)
+{
+  var j = variable;
+  var z = maxPage;
+  if(j<2)
+  {
+    j=2;
+  }
+  if(j>z-3)
+  {
+    j=z-3;
+  }
+  var t = 2;
+  var l;
+
+  if(page == 0)
+  {
+    l=2;
+  }
+  else if (page == 1)
+  {
+    l=3;
+  }
+  else if (page == maxPage -1)
+  {
+    l=6;
+  }
+  else if (page = maxPage -2)
+  {
+    l=5;
+  }
+  else
+  {
+    l=4;
+  }
+
+  if(page==0)
+  {
+    document.getElementById("pages").childNodes[1].style.visibility= "hidden";
+  }
+  else
+  {
+    document.getElementById("pages").childNodes[1].style.visibility= "visible";
+  }
+
+  if(page == maxPage -1)
+  {
+    document.getElementById("pages").childNodes[7].style.visibility= "hidden";
+  }
+  else
+  {
+    document.getElementById("pages").childNodes[7].style.visibility= "visible";
+  }
+
+  for(var i=j;i<j+5;i++)
+  {
+    document.getElementById("pages").childNodes[t].childNodes[0].text = i -1;
+    if(t==l)
+    {
+      document.getElementById("pages").childNodes[t].className = "page-item active";
+    }
+    else
+    {
+      document.getElementById("pages").childNodes[t].className = "page-item";
+    }
+
+    t++;
+    }
+}
+
+function updatePage2(variable)
+{
+  var j = variable +2;
+  var z = maxPage + 2;
+  var t = 2;
+
+  if(page==0)
+  {
+    document.getElementById("pages").childNodes[1].style.visibility = "hidden";
+  }
+  else
+  {
+    document.getElementById("pages").childNodes[1].style.visibility= "visible";
+  }
+
+  if(page == maxPage -1)
+  {
+    document.getElementById("pages").childNodes[maxPage + 2].style.visibility= "hidden";
+  }
+  else
+  {
+    document.getElementById("pages").childNodes[maxPage + 2].style.visibility="visible";
+  }
+
+  for(var i=2;i<z;i++)
+  {
+    document.getElementById("pages").childNodes[t].childNodes[0].text = i-1;
+    if(t == j)
+    {
+      document.getElementById("pages").childNodes[t].className = "page-item active";
+    }
+    else
+      {
+        document.getElementById("pages").childNodes[t].className = "page-item";
+      }
+
+      t++;
+      }
+}
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+</div>
+
+<div class="container-fluid">
+
+
+  <div class="row">
+  		<div class="col-sm-9" class="copy">
+			<a href="CreateProbPage.html" target="_blank" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true"> <i class="fa fa-plus"> Create a new problem</i> </a>
+		</div>
+	</div>
+		
+  
+
+
+<nav  id="sub_nav" aria-label="Problems navigation">
+          <ul id="pages" class="pagination justify-content-end">
+          
+          </ul>
+</nav>  
+
+
+
+
+<!--
+    <div class="col-sm-3">
+			<nav aria-label="Problems navigation">
+  				<ul class="pagination">
+    				<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    				<li class="page-item"><a class="page-link" href="#">1</a></li>
+    				<li class="page-item"><a class="page-link" href="#">2</a></li>
+    				<li class="page-item"><a class="page-link" href="#">3</a></li>
+    				<li class="page-item"><a class="page-link" href="#">Next</a></li>
+  				</ul>
+			</nav>
+		</div>
+
+	</div>
+-->
+
+	
+
+
+
+
+
+  <footer>
+		<hr>
+		<div class="row">
+			<div class="col-sm-4 copyright">
+          		<span>Copyright © 2018: GEMFU</span>
+        	</div>
+        </div>
+    </footer>
+  	
+ </div> 
+
+
+
+
+
+
+</body>
+
+</html>

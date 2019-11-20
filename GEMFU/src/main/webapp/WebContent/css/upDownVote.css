@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+.vote-up:before{
+    content: "\f0d8"; /* The content of book icon*/
+    font-size: 60px;
+    color:#808B96;
+}
+
+.vote-up {
+      display: inline-block;
+      font: normal normal normal 24px/1 FontAwesome;
+      font-size: inherit;
+      text-rendering: auto;
+      cursor: pointer;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+}
+
+
+.vote-up.on:before {
+    color:#0E71BD;
+}
+
+.vote-down:before {
+    content: "\f0d7"; /* The content of book icon*/
+    font-size: 60px;
+    color:#808B96;
+}
+.vote-down {
+    display: inline-block;
+    font: normal normal normal 24px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    cursor: pointer;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.vote-down.on:before {
+    color:red;
+}
+
+
+#vote-number{
+    border:none;
+    text-align: center;
+}

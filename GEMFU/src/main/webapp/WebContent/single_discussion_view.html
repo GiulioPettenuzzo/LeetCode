@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Example Bootstrap WA 2017-2018">
+
+    <title>GEMFU</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/discussion.css" rel="stylesheet">
+
+    <link href="bootstrap-4.0.0-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="conteiner-fluid" style="padding-left: 2%;">
+<div class="row">
+    <button type="button" id="back-to-list" onclick="closeDiscussion()">
+        <i class="fas fa-list-ul"></i>
+    </button>
+
+    <span id="problem_title" style="padding-left: 10px;padding-top: 10px;">         </span>
+
+</div>
+
+<div class="row">
+    <div class="discussion-box-title" style="width: 100%">
+        <div class="row">
+            <font size="5" style=" padding-left:10px;  vertical-align: middle;"><b> <span id="single_discussion_title"></span></b></font>
+            <div class="discussion-votes">
+                <div class="discussion-box-votes" style="border-left:1px solid; border-color: #d9d9d9; padding-left: 15px; padding-right:10px;">
+                    <font color="#7c7a79">VIEWS </font><br>
+                    <b><span id="single_discussion_views" color="#2965a8"></span></b>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="row"  style="border-bottom:1px dotted;border-color:#d9d9d9; padding-bottom:10px;">
+        <div class="col col-md-1" id="div_vote" style="background-color: #F8F8F8; overflow: hidden;">
+
+        </div>
+
+
+        <div class="discussion-column-for-text col col-md-11">
+            <div class="row">
+                <font color="#7c7a79" style=" padding-left:20px"> <span id="single_discussion_date"></span></font>
+                <div class="discussion-votes">
+                    <p style="float: right;"><img src="http://www.clker.com/cliparts/B/R/Y/m/P/e/blank-profile-hi.png" style= "width: 30px;height: 30px;" id="single_discussion_profile_image" class= "profile-picture-image" alt="Profile Image"></p>
+                    <font color="#7c7a79" style="padding-right:5px;">&nbsp;<span id="single_discussion_user"></span></font>
+                </div>
+            </div>
+            <font id="text-of-discussion" style="padding:10px;"><span id="single_discussion_text"></span></font>
+        </div>
+
+    </div>
+</div>
+
+
+<footer id="comments">
+
+</footer>
+<script>
+    $(function(){
+      $("#comments").load("CommentForDiscussion.html");
+    });
+
+    $("#div_vote").load("upDownVote.html");
+    </script>
+<script src="js/discussionScriptFile.js"></script>
+
+</body>
+</html>

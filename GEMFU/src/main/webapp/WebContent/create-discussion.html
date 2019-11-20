@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="bootstrap-4.0.0-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="css/stylesheet.css" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    <title>Create Discussion</title>
+</head>
+
+<body>
+<div class="discussion-dialog-content ">
+
+    <div class="space">
+        <h1>Create Discussion</h1>
+    </div>
+
+    <form method="POST" action="<c:url value="create-thread/>
+    <div class="row space container">
+            <input class = "form-control ins-title space" id="discussion-title" name="title" type="text" placeholder="Enter Discussion Title" />
+        <button class="btn-sm button-cancel space" id="col-cancel" type="reset" onclick="closeThreadDialog()">Cancel </button>
+            <button class="btn-sm button-post pull-right btn-sm RbtnMargin" id="post_discussion" type="button"> Post
+            <i class="fab fa-telegram-plane"></i></button>
+    </div>
+    <!--<label for="Enter a topic text">Text:</label>-->
+    <div  class="cp-content space">
+        <textarea id="ins-discussion-desc" class="form-control" name="ins-discussion-desc" rows="10" placeholder="Enter the text of the discussion here"></textarea><br/>
+        <script>
+               CKEDITOR.replace("ins-discussion-desc", { height: "25vh"});
+        </script>
+    </div>
+    </form>
+</div>
+
+<script src="js/discussionScriptFile.js"></script>
+
+</body>
+</html>

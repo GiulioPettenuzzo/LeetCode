@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>GEMFU</title>
+
+    <link href="css/SolutionPageStylesheet.css" rel="stylesheet">
+    <link href="bootstrap-4.0.0-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/discussionScriptFile.js"></script>
+
+    <script src="ckeditor/ckeditor.js"></script>
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div id="separator">
+            <canvas id="canv1" height="100"></canvas>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="comments-area2" class="col-md-10">
+            <div id="comments-label" class="row"><h4><strong>Comments:</strong></h4><div id="n-comments2"></div></div>
+
+            <div id="insert-comment2" class="justify-content-end">
+                <div class="row">
+                    <div class="col-md-2"></div>
+
+                    <textarea id="ins-comment2" class="form-control row" placeholder="Insert a comment..."></textarea>
+                    <script>
+                            CKEDITOR.config.toolbar_mine = [["Bold", "Italic", "Styles", "Format"]];
+                            CKEDITOR.replace("ins-comment2", { height: "50px", width: "79%" });
+                        </script>
+
+                </div>
+                <div class="row justify-content-end" style="padding-right:2.1vw;">
+                    <button id="Post" type="button" class="btn btn-info" onclick="addComment2()">POST</button>
+                </div>
+            </div>
+
+
+
+            <script>
+                    $(document).ready(function(){
+
+                      var username = getCookie("username");
+                       var userSession = sessionStorage.getItem("username");
+                        if(username!="" && username!=null && userSession != null)
+                        {
+                            document.getElementById("insert-comment2").style.display = "block";
+                        }
+                        else
+                        {
+                            document.getElementById("insert-comment2").style.display = "none";
+                        }
+                    });
+
+
+                    loadComments2();
+            </script>
+        </div>
+    </div>
+</div>
+</body>

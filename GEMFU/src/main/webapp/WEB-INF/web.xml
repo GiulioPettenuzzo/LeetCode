@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<web-app id="hello-world-webapp" version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+    
+	<display-name>GEMFU JSP/Servlet JDBC</display-name>
+	<description>Application accessing a DBMS via JDBC.</description>
+	
+	<servlet>
+		<servlet-name>SearchCompanyByName</servlet-name>
+		<servlet-class>it.unipd.dei.webapp.servlet.SearchCompanyByNameServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>CreateCompany</servlet-name>
+		<servlet-class>it.unipd.dei.webapp.servlet.CreateCompanyServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>SearchUserByUserName</servlet-name>
+		<servlet-class>it.unipd.dei.webapp.servlet.SearchUserByUserNameServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>CreateUser</servlet-name>
+		<servlet-class>it.unipd.dei.webapp.servlet.CreateUserServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>LoginUser</servlet-name>
+		<servlet-class>it.unipd.dei.webapp.servlet.LoginUserServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>CreateSubmission</servlet-name>
+		<servlet-class>it.unipd.dei.webapp.servlet.CreateSubmissionServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>CreateThread</servlet-name>
+		<servlet-class>it.unipd.dei.webapp.servlet.CreateThreadServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>RestManagerServlet</servlet-name>
+		<servlet-class>it.unipd.dei.webapp.servlet.RestManagerServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>SearchHintByProblem</servlet-name>
+		<servlet-class>it.unipd.dei.webapp.servlet.SearchHintByProblemServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>CreateHint</servlet-name>
+		<servlet-class>it.unipd.dei.webapp.servlet.CreateHintServlet</servlet-class>
+	</servlet>
+
+	
+
+	<servlet-mapping>
+		<servlet-name>SearchCompanyByName</servlet-name>
+		<url-pattern>/search-company-by-name</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>CreateCompany</servlet-name>
+		<url-pattern>/create-company</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>SearchUserByUserName</servlet-name>
+		<url-pattern>/search-user-by-username</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>CreateUser</servlet-name>
+		<url-pattern>/create-user</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>LoginUser</servlet-name>
+		<url-pattern>/login-user</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>CreateThread</servlet-name>
+		<url-pattern>/create-thread</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>CreateSubmission</servlet-name>
+		<url-pattern>/create-Submission</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>RestManagerServlet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>SearchHintByProblem</servlet-name>
+		<url-pattern>/search-hint-by-problem</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>CreateHint</servlet-name>
+		<url-pattern>/create-hint</url-pattern>
+	</servlet-mapping>
+
+	
+	<resource-ref>
+      <description>Connection pool to the database</description>
+      <res-ref-name>jdbc/GEMFU</res-ref-name>
+      <res-type>javax.sql.DataSource</res-type>
+      <res-auth>Container</res-auth>
+  	</resource-ref>
+</web-app>

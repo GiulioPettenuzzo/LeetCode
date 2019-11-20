@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Example Bootstrap WA 2017-2018">
+
+    <title>GEMFU</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="bootstrap-4.0.0-dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+    <script src="js/scriptFileMichele.js"></script>
+  </head>
+
+<body>
+
+<div class="container-fluid" id="hint-list">
+<br>
+
+
+</div>
+
+<script>
+
+var hintOpened = 0;
+
+$(document).ready(function() {
+        makeHint();
+});
+
+function makeHint() {
+    var id = getQueryVariable("id");
+    var url = 'http://localhost:8080/GEMFU-2.0/rest/hint/list/'+ id;
+    httpRequest = new XMLHttpRequest();
+
+    if (!httpRequest) {
+      alert('Giving up :( Cannot create an XMLHTTP instance');
+      return false;
+    }
+    httpRequest.onreadystatechange = setButtonHint;
+    httpRequest.open('GET', url);
+    httpRequest.send();
+} 
+
+function setButtonHint() {
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+        if (httpRequest.status == 200) {
+            var jsonData = JSON.parse(httpRequest.responseText);
+            var resource = jsonData['resource-list'];
+            var div = document.getElementById('hint-list');
+            
+            
+            
+            if(resource.length > 0)
+            {
+                var suggest = document.createElement('div');
+                suggest.style.textAlign = "center";
+                suggest.innerHTML = "Have any suggestions or better hints?";
+                div.appendChild(suggest);
+
+                var addS = document.createElement('a');
+                addS.href = "mailto:admin@gemfu.it?Subject=Send%20Hint";
+                addS.innerHTML = "Add it!";
+                suggest.appendChild(addS);
+            }
+            else{
+                div.style.textAlign = "center";
+                //inserisci un hint
+                var text = document.createElement('div');
+                text.className = "text";
+                text.innerHTML = "We do not have any hints for this question at the moment.";
+                div.appendChild(text);
+
+                var quest = document.createElement('div');
+                quest.className="card-subtitle mb-2 text-muted";
+                quest.innerHTML = "<h4>Do you have one or more hints?</h4>";
+                div.appendChild(quest);
+
+                var addbtn = document.createElement('btn');
+                addbtn.className = "btn btn-success";
+                addbtn.onclick = function(){
+                    var str = "mailto:admin@gemfu.it?Subject=Send%20Hint";
+                    window.location = str;
+                };
+                addbtn.innerHTML = "Suggest Now";
+                div.appendChild(addbtn);
+
+            }
+            
+         
+            for (var i = 0; i < resource.length; i++) 
+            {
+                //alert("inserisco l'hint numero "+i);
+                var hint = resource[i].hint;
+                var count = i+1;
+                var textHint = "Hint "+count+"";
+    
+                var btn = document.createElement('button');
+                btn.className = "btn btn-light sol-btn";
+                btn.style.width = "100%"; 
+
+
+                btn.id= textHint;
+                btn.innerHTML = textHint;
+                
+                div.appendChild(btn);
+                
+
+                var cont = document.createElement("div");
+                cont.className = "card card-body";
+                cont.id = textHint+"desc";
+                div.appendChild(cont);
+                cont.style.display = "none";
+                cont.innerHTML = hint['description'];
+                cont.style.width = "100%"; 
+
+
+                btn.onclick = function(){
+                    x = document.getElementById(this.id+"desc");
+                    if(x.style.display == "none"){
+                        x.style.display = "block";
+                        if(hintOpened != 0)
+                        {
+                         document.getElementById(hintOpened+"desc").style.display = "none";  
+                        }
+                        hintOpened = this.id;
+                    }
+                    else{
+                        x.style.display = "none";
+                        hintOpened = 0;
+                    }
+                };
+
+            }
+
+        
+
+        } else {
+            alert('There was a problem with the request.');
+        }
+    }
+}
+
+</script>
+
+</body>
+
+</html>
