@@ -12,28 +12,53 @@ receive in the next job interview.
 
 Functional Requirements:
 
-• Allow all users to register to the web site; \n
+• Allow all users to register to the web site;
+
 • Allow each registered user to log-in to the web site;
+
 • Allow each registered user to log-out to the web site;
+
 • Allow all users to see the list of the problems;
+
 • Allow all users to see the solution of problems;
+
 • Allow all users to see the comments about problems;
+
 • Allow all users to see the discussion about threads;
+
 • Allow all users to see the hint about problems;
+
 • Allow all users to search problems by category;
+
 • Allow all users to search problems by difficulty;
+
 • Allow all users to search problems by company;
+
 • Allow each logged user to share his problem;
+
 • Allow each logged user to create threads;
+
 • Allow each logged user to submit a solution;
+
 • Allow each logged user to comment problems;
+
 • Allow each logged user to comment threads;
+
 • Allow each logged user to add like/dislike/favorite to problems;
+
 • Allow each logged user to add like/dislike to threads;
+
 • Allow each logged user to add like/dislike to comments;
+
 • Store the user person information: first name, last name, birthday and email;
+
 • Store information about problem: title, text, date, category, difficulty, company, user, comments, views and likes;
+
 • Store information about solution: title, text, related problem, user, comments, views and likes;
+
 • Store information about thread: title, text, user, comments, views and likes;
+
 • Store information about submission of solution: title, text, data and user;
+
 • Store information about comment: user, data, text, likes and related comments.
+
